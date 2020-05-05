@@ -4,7 +4,7 @@ import Countries from '../containers/Contries';
 function App() {
   return (
     <div className="App">
-      <h1>Learn React</h1>
+      <h1>REST Countries</h1>
       <Countries />
     </div>
   );
