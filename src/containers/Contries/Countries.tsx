@@ -1,40 +1,70 @@
+/* eslint-disable array-callback-return */
 import React, { useState, useEffect } from 'react';
+
+type Currency = {
+  name: string;
+};
+
+type Languages = {
+  name: string;
+};
+interface ICountry {
+  alpha3Code: string;
+  name: string;
+  population: number;
+  region: string;
+  capital: string;
+  nativeName: string;
+  subregion: string;
+  topLevelDomain: [string];
+  currencies: [Currency];
+  languages: [Languages];
+  borders: [string];
+}
 
 function Countries() {
   const [countryList, setCountryList] = useState([]);
   const [countryObj, setCountryObj] = useState({});
 
   useEffect(() => {
-    async function getCountries() {
+    async function getCountryList() {
       const data = await fetch(`https://restcountries.eu/rest/v2/all`);
       const json = await data.json();
       setCountryList(json);
       return json;
     }
-    getCountries();
+    getCountryList();
   }, []);
 
   console.log(countryList);
 
   function makeCountriesObject() {
-    var obj = {};
-    countryList.map(function (country: {
-      name: string;
-      subregion: string;
-    }): void {
-      const s = String(country.name).trim();
-      var newObject = {
-        [s]: {
-          name: country.name,
-          subregion: country.subregion,
-        },
-      };
-      obj = Object.assign({}, obj, newObject);
+    let obj = {};
+
+    countryList.map(function (country: ICountry): void {
+      const ALPHA_3_CODE: string = 'alpha3Code';
+      const hasAlphacode: boolean = country.hasOwnProperty(ALPHA_3_CODE);
+
+      if (hasAlphacode) {
+        const objKey: string = String(country.alpha3Code).trim();
+        const objProps = {
+          [objKey]: {
+            name: country.name,
+            population: country.population,
+            region: country.region,
+            capital: country.capital,
+            nativeName: country.nativeName,
+            subregion: country.subregion,
+            topLevelDomain: country.topLevelDomain,
+            currencies: country.currencies,
+            languages: country.languages,
+            borders: country.languages,
+          },
+        };
+        obj = Object.assign({}, obj, objProps);
+      }
     });
-    console.log(obj);
-    var arr = Object.keys(obj);
-    console.log(arr);
-    return obj;
+    console.log('object', obj);
   }
 
   makeCountriesObject();
