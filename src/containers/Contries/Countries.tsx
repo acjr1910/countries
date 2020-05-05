@@ -1,54 +1,37 @@
 /* eslint-disable array-callback-return */
 import React, { useState, useEffect } from 'react';
+import { endpoint } from './endpoint';
+import { Country, ICountries } from './intefaces';
 
-type Currency = {
-  name: string;
-};
-
-type Languages = {
-  name: string;
-};
-interface ICountry {
-  alpha3Code: string;
-  name: string;
-  population: number;
-  region: string;
-  capital: string;
-  nativeName: string;
-  subregion: string;
-  topLevelDomain: [string];
-  currencies: [Currency];
-  languages: [Languages];
-  borders: [string];
-}
+import Card from '../../components/Card';
 
 function Countries() {
-  const [countryList, setCountryList] = useState([]);
-  const [countryObj, setCountryObj] = useState({});
+  const [countriesObj, setCountriesObj] = useState<ICountries>({});
+  let countryCards: React.ReactNode[] = [];
 
   useEffect(() => {
-    async function getCountryList() {
-      const data = await fetch(`https://restcountries.eu/rest/v2/all`);
+    async function fetchCountries() {
+      const data = await fetch(endpoint);
       const json = await data.json();
-      setCountryList(json);
-      return json;
+      const countriesObj = makeCountriesObject(json);
+      setCountriesObj(countriesObj);
+      return countriesObj;
     }
-    getCountryList();
+    fetchCountries();
   }, []);
 
-  console.log(countryList);
-
-  function makeCountriesObject() {
+  function makeCountriesObject(arrList: [Country]): ICountries {
     let obj = {};
 
-    countryList.map(function (country: ICountry): void {
+    arrList.map((country: Country) => {
       const ALPHA_3_CODE: string = 'alpha3Code';
       const hasAlphacode: boolean = country.hasOwnProperty(ALPHA_3_CODE);
 
       if (hasAlphacode) {
         const objKey: string = String(country.alpha3Code).trim();
-        const objProps = {
+        const countryObj = {
           [objKey]: {
+            alpha3Code: country.alpha3Code,
             name: country.name,
             population: country.population,
             region: country.region,
@@ -61,15 +44,32 @@ function Countries() {
             borders: country.languages,
           },
         };
-        obj = Object.assign({}, obj, objProps);
+        obj = Object.assign({}, obj, countryObj);
       }
     });
-    console.log('object', obj);
+    return obj;
   }
 
-  makeCountriesObject();
+  function generateCards(filter?: string): void {
+    for (let key in countriesObj) {
+      if (key in countriesObj) {
+        const country = countriesObj[key];
+        countryCards.push(
+          <Card
+            key={country.alpha3Code}
+            name={country.name}
+            population={country.population}
+            region={country.region}
+            capital={country.capital}
+          />
+        );
+      }
+    }
+  }
 
-  return <div>Countries</div>;
+  generateCards();
+
+  return <div>{countryCards}</div>;
 }
 
 export default Countries;
