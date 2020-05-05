@@ -51,6 +51,7 @@ function Countries() {
   }
 
   function generateCards(filter?: string): void {
+    countryCards = [];
     for (let key in countriesObj) {
       if (key in countriesObj) {
         const country = countriesObj[key];
