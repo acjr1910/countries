@@ -9,7 +9,7 @@ interface IProps {
 
 function Card({ name, population, region, capital }: IProps) {
   return (
-    <div>
+    <div data-testid="country-card">
       <p>{name}</p>
       <p>{population}</p>
       <p>{region}</p>
