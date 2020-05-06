@@ -1,8 +1,8 @@
-type Currency = {
+export type Currency = {
   name: string;
 };
 
-type Languages = {
+export type Languages = {
   name: string;
 };
 
@@ -16,12 +16,8 @@ export type Country = {
   capital: string;
   nativeName: string;
   subregion: string;
-  topLevelDomain: [string];
+  topLevelDomain: string[];
   currencies: [Currency];
-  languages: [Languages];
-  borders: [string];
-};
-
-export type ICountries = {
-  [key: string]: Country;
+  languages: Languages[];
+  borders: string[];
 };
