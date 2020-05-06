@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ICountries } from '../Contries/intefaces';
-import Countries from '../Contries';
+import { ICountries } from '../Countries/intefaces';
+import Countries from '../Countries';
 import SearchField from '../../components/SearchField';
 import Filter from '../../components/Filter';
 
