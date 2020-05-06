@@ -14,7 +14,7 @@ function Filter({
   return (
     <div>
       {filterByRegionValues.map((f) => (
-        <div>{f}</div>
+        <div key={f}>{f}</div>
       ))}
     </div>
   );

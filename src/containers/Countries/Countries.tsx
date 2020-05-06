@@ -22,19 +22,21 @@ function Countries({
   const [fetchHasFailed, setFetchHasFailed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   let countryCards: React.ReactNode[] = [];
-  let regionFilterValues: string[] = [];
 
   useEffect(() => {
     async function fetchCountries() {
       let countries;
+      let regions: string[] = [];
+
       setIsLoading(true);
       try {
         const data = await fetch(endpoint);
         const json = await data.json();
         countries = makeCountriesObject(json);
+        regions = makeRegionsArray(countries);
         setIsLoading(false);
         setCountries(countries);
-        setFilterByRegionValues(['Americas', 'Asia']); // make dynamic
+        setFilterByRegionValues(regions);
       } catch (error) {
         setIsLoading(false);
         setFetchHasFailed(true);
@@ -44,13 +46,18 @@ function Countries({
     fetchCountries();
   }, [setCountries, setFilterByRegionValues]);
 
-  function pushRegionFilterValue(region: string) {
-    console.log(region);
-    regionFilterValues.push(region);
-  }
+  function makeRegionsArray(countries: ICountries): string[] {
+    let cache: { [key: string]: string } = {};
 
-  function makeFiltersArray() {
-    // CREATE THIS FN TO generate each filter key;
+    for (let key in countries) {
+      const region = countries[key].region;
+      if (region && !cache[region]) {
+        cache[region] = region;
+      }
+    }
+    const regionsArray: string[] = Object.keys(cache);
+
+    return regionsArray;
   }
 
   function makeCountriesObject(arrList: [Country]): ICountries {
@@ -81,7 +88,6 @@ function Countries({
         obj = Object.assign({}, obj, countryObj);
       }
     });
-
     return obj;
   }
 
@@ -120,7 +126,8 @@ function Countries({
   if (fetchHasFailed)
     return (
       <div>
-        Oops, something went wrong. Please refresh the page or try again later.
+        <h1>Oops, something went wrong.</h1>
+        <h2>Please refresh the page or try again later.</h2>
       </div>
     );
 
