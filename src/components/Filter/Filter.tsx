@@ -11,12 +11,22 @@ function Filter({
   selectedRegion,
   setSelectedRegion,
 }: Props) {
+  function handleChange(event: React.FormEvent<HTMLSelectElement>) {
+    const value = event.currentTarget.value;
+    setSelectedRegion(value);
+  }
+
   return (
-    <div>
-      {filterByRegionValues.map((f) => (
-        <div key={f}>{f}</div>
-      ))}
-    </div>
+    <select value={selectedRegion} onChange={handleChange}>
+      {filterByRegionValues.map((value, index) => {
+        const optionValue = index == 0 ? '' : value;
+        return (
+          <option key={value} value={optionValue}>
+            {value}
+          </option>
+        );
+      })}
+    </select>
   );
 }
 

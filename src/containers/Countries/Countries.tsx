@@ -10,6 +10,7 @@ type Props = {
   countries: ICountries;
   setCountries: React.Dispatch<React.SetStateAction<ICountries>>;
   searchFieldValue: string;
+  selectedRegion: string;
   setFilterByRegionValues: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
@@ -17,6 +18,7 @@ function Countries({
   countries,
   setCountries,
   searchFieldValue,
+  selectedRegion,
   setFilterByRegionValues,
 }: Props) {
   const [fetchHasFailed, setFetchHasFailed] = useState(false);
@@ -47,7 +49,9 @@ function Countries({
   }, [setCountries, setFilterByRegionValues]);
 
   function makeRegionsArray(countries: ICountries): string[] {
-    let cache: { [key: string]: string } = {};
+    let cache: { [key: string]: string } = {
+      ['Filter by Region']: '',
+    };
 
     for (let key in countries) {
       const region = countries[key].region;
@@ -56,7 +60,6 @@ function Countries({
       }
     }
     const regionsArray: string[] = Object.keys(cache);
-
     return regionsArray;
   }
 
@@ -91,11 +94,15 @@ function Countries({
     return obj;
   }
 
-  function generateCards(search: string): void {
+  function generateCards(search: string, region: string): void {
     countryCards = [];
     const regex = new RegExp(`^${search}`, 'i');
 
-    function pushCountry(arr: React.ReactNode[], country: any): void {
+    function pushCountry(arr: React.ReactNode[], country: Country): void {
+      if (selectedRegion && selectedRegion !== country.region) {
+        console.log(country.region, selectedRegion);
+        return;
+      }
       arr.push(
         <Card
           key={country.alpha3Code}
@@ -109,7 +116,8 @@ function Countries({
 
     for (let key in countries) {
       if (key in countries) {
-        const country = countries[key];
+        let country = countries[key];
+
         if (search) {
           if (regex.test(country.name)) {
             pushCountry(countryCards, country);
@@ -131,7 +139,7 @@ function Countries({
       </div>
     );
 
-  generateCards(searchFieldValue);
+  generateCards(searchFieldValue, selectedRegion);
 
   return <div className="countries__cards-container">{countryCards}</div>;
 }
