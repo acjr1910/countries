@@ -4,26 +4,14 @@ import { endpoint } from './endpoint';
 import { Country } from './types';
 import { ICountries } from './intefaces';
 
-import Card from '../../components/Card';
-
 type Props = {
-  countries: ICountries;
   setCountries: React.Dispatch<React.SetStateAction<ICountries>>;
-  searchFieldValue: string;
-  selectedRegion: string;
   setFilterByRegionValues: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-function Countries({
-  countries,
-  setCountries,
-  searchFieldValue,
-  selectedRegion,
-  setFilterByRegionValues,
-}: Props) {
+function Countries({ setCountries, setFilterByRegionValues }: Props) {
   const [fetchHasFailed, setFetchHasFailed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  let countryCards: React.ReactNode[] = [];
 
   useEffect(() => {
     async function fetchCountries() {
@@ -36,7 +24,6 @@ function Countries({
         const json = await data.json();
         countries = makeCountriesObject(json);
         regions = makeRegionsArray(countries);
-        console.log(json);
         setIsLoading(false);
         setCountries(countries);
         setFilterByRegionValues(regions);
@@ -44,13 +31,14 @@ function Countries({
         setIsLoading(false);
         setFetchHasFailed(true);
       }
-      return countries;
+      return () => {};
     }
     fetchCountries();
   }, [setCountries, setFilterByRegionValues]);
 
   function makeRegionsArray(countries: ICountries): string[] {
     let cache: { [key: string]: string } = {
+      // eslint-disable-next-line no-useless-computed-key
       ['Filter by Region']: '',
     };
 
@@ -96,42 +84,6 @@ function Countries({
     return obj;
   }
 
-  function generateCards(search: string, region: string): void {
-    countryCards = [];
-    const regex = new RegExp(`^${search}`, 'i');
-
-    function pushCountry(arr: React.ReactNode[], country: Country): void {
-      if (selectedRegion && selectedRegion !== country.region) {
-        return;
-      }
-      arr.push(
-        <Card
-          key={country.alpha3Code}
-          alpha3Code={country.alpha3Code}
-          name={country.name}
-          population={country.population}
-          region={country.region}
-          capital={country.capital}
-          flag={country.flag}
-        />
-      );
-    }
-
-    for (let key in countries) {
-      if (key in countries) {
-        let country = countries[key];
-
-        if (search) {
-          if (regex.test(country.name)) {
-            pushCountry(countryCards, country);
-          }
-        } else {
-          pushCountry(countryCards, country);
-        }
-      }
-    }
-  }
-
   if (isLoading) return <div>Loading</div>; // add spinner here
 
   if (fetchHasFailed)
@@ -141,10 +93,7 @@ function Countries({
         <h2>Please refresh the page or try again later.</h2>
       </div>
     );
-
-  generateCards(searchFieldValue, selectedRegion);
-
-  return <div className="countries__cards-container">{countryCards}</div>;
+  return null;
 }
 
 export default Countries;

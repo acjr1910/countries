@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React from 'react';
 
 type Props = {
