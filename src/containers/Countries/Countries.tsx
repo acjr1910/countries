@@ -100,7 +100,6 @@ function Countries({
 
     function pushCountry(arr: React.ReactNode[], country: Country): void {
       if (selectedRegion && selectedRegion !== country.region) {
-        console.log(country.region, selectedRegion);
         return;
       }
       arr.push(
