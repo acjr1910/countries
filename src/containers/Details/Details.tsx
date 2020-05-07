@@ -13,6 +13,8 @@ function Details({ countries }: Props): JSX.Element {
   let { alpha3Code } = useParams();
   const country = countries[alpha3Code];
 
+  if (!country) return <h1>LOADING DETAILS</h1>;
+
   return (
     <div>
       <BackButton />
