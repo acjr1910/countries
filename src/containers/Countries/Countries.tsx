@@ -36,6 +36,7 @@ function Countries({
         const json = await data.json();
         countries = makeCountriesObject(json);
         regions = makeRegionsArray(countries);
+        console.log(json);
         setIsLoading(false);
         setCountries(countries);
         setFilterByRegionValues(regions);
@@ -84,7 +85,8 @@ function Countries({
             topLevelDomain: country.topLevelDomain,
             currencies: country.currencies,
             languages: country.languages,
-            borders: country.languages,
+            borders: country.borders,
+            flag: country.flag,
           },
         };
 
@@ -105,10 +107,12 @@ function Countries({
       arr.push(
         <Card
           key={country.alpha3Code}
+          alpha3Code={country.alpha3Code}
           name={country.name}
           population={country.population}
           region={country.region}
           capital={country.capital}
+          flag={country.flag}
         />
       );
     }
