@@ -20,4 +20,5 @@ export type Country = {
   currencies: [Currency];
   languages: Languages[];
   borders: string[];
+  flag: string;
 };
