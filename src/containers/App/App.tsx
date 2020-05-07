@@ -28,6 +28,7 @@ function App() {
         countries={countries}
         setCountries={setCountries}
         searchFieldValue={searchFieldValue}
+        selectedRegion={selectedRegion}
         setFilterByRegionValues={setFilterByRegionValues}
       />
     </div>

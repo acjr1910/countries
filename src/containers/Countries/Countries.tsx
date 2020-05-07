@@ -10,6 +10,7 @@ type Props = {
   countries: ICountries;
   setCountries: React.Dispatch<React.SetStateAction<ICountries>>;
   searchFieldValue: string;
+  selectedRegion: string;
   setFilterByRegionValues: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
@@ -17,24 +18,27 @@ function Countries({
   countries,
   setCountries,
   searchFieldValue,
+  selectedRegion,
   setFilterByRegionValues,
 }: Props) {
   const [fetchHasFailed, setFetchHasFailed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   let countryCards: React.ReactNode[] = [];
-  let regionFilterValues: string[] = [];
 
   useEffect(() => {
     async function fetchCountries() {
       let countries;
+      let regions: string[] = [];
+
       setIsLoading(true);
       try {
         const data = await fetch(endpoint);
         const json = await data.json();
         countries = makeCountriesObject(json);
+        regions = makeRegionsArray(countries);
         setIsLoading(false);
         setCountries(countries);
-        setFilterByRegionValues(['Americas', 'Asia']); // make dynamic
+        setFilterByRegionValues(regions);
       } catch (error) {
         setIsLoading(false);
         setFetchHasFailed(true);
@@ -44,13 +48,19 @@ function Countries({
     fetchCountries();
   }, [setCountries, setFilterByRegionValues]);
 
-  function pushRegionFilterValue(region: string) {
-    console.log(region);
-    regionFilterValues.push(region);
-  }
+  function makeRegionsArray(countries: ICountries): string[] {
+    let cache: { [key: string]: string } = {
+      ['Filter by Region']: '',
+    };
 
-  function makeFiltersArray() {
-    // CREATE THIS FN TO generate each filter key;
+    for (let key in countries) {
+      const region = countries[key].region;
+      if (region && !cache[region]) {
+        cache[region] = region;
+      }
+    }
+    const regionsArray: string[] = Object.keys(cache);
+    return regionsArray;
   }
 
   function makeCountriesObject(arrList: [Country]): ICountries {
@@ -81,15 +91,18 @@ function Countries({
         obj = Object.assign({}, obj, countryObj);
       }
     });
-
     return obj;
   }
 
-  function generateCards(search: string): void {
+  function generateCards(search: string, region: string): void {
     countryCards = [];
     const regex = new RegExp(`^${search}`, 'i');
 
-    function pushCountry(arr: React.ReactNode[], country: any): void {
+    function pushCountry(arr: React.ReactNode[], country: Country): void {
+      if (selectedRegion && selectedRegion !== country.region) {
+        console.log(country.region, selectedRegion);
+        return;
+      }
       arr.push(
         <Card
           key={country.alpha3Code}
@@ -103,7 +116,8 @@ function Countries({
 
     for (let key in countries) {
       if (key in countries) {
-        const country = countries[key];
+        let country = countries[key];
+
         if (search) {
           if (regex.test(country.name)) {
             pushCountry(countryCards, country);
@@ -120,11 +134,12 @@ function Countries({
   if (fetchHasFailed)
     return (
       <div>
-        Oops, something went wrong. Please refresh the page or try again later.
+        <h1>Oops, something went wrong.</h1>
+        <h2>Please refresh the page or try again later.</h2>
       </div>
     );
 
-  generateCards(searchFieldValue);
+  generateCards(searchFieldValue, selectedRegion);
 
   return <div className="countries__cards-container">{countryCards}</div>;
 }
