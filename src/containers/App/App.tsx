@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ICountries } from '../Countries/intefaces';
 import Countries from '../Countries';
+import CountriesComponent from '../../components/Countries';
 import SearchField from '../../components/SearchField';
 import Filter from '../../components/Filter';
 import Details from '../Details';
@@ -32,16 +33,18 @@ function App() {
               selectedRegion={selectedRegion}
               setSelectedRegion={setSelectedRegion}
             />
-            <Countries
+            <CountriesComponent
               countries={countries}
-              setCountries={setCountries}
               searchFieldValue={searchFieldValue}
               selectedRegion={selectedRegion}
-              setFilterByRegionValues={setFilterByRegionValues}
             />
           </div>
         </Route>
       </Switch>
+      <Countries
+        setFilterByRegionValues={setFilterByRegionValues}
+        setCountries={setCountries}
+      />
     </Router>
   );
 }
