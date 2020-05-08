@@ -9,6 +9,8 @@ import Filter from '../../components/Filter';
 import Details from '../Details';
 import Header from '../../components/Header';
 
+import { GlobalStyles } from '../../utils/styles/global';
+
 function App() {
   const [countries, setCountries] = useState<ICountries>({});
   const [searchFieldValue, setSearchFieldValue] = useState('');
@@ -19,36 +21,38 @@ function App() {
 
   return (
     <ThemeContextProvider>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/details/:alpha3Code">
-            <Details countries={countries} />
-          </Route>
-          <Route exact path="/">
-            <div className="countries countries__app">
-              <SearchField
-                searchFieldValue={searchFieldValue}
-                setSearchFieldValue={setSearchFieldValue}
-              />
-              <Filter
-                filterByRegionValues={filterByRegionValues}
-                selectedRegion={selectedRegion}
-                setSelectedRegion={setSelectedRegion}
-              />
-              <CountriesComponent
-                countries={countries}
-                searchFieldValue={searchFieldValue}
-                selectedRegion={selectedRegion}
-              />
-            </div>
-          </Route>
-        </Switch>
-        <Countries
-          setFilterByRegionValues={setFilterByRegionValues}
-          setCountries={setCountries}
-        />
-      </Router>
+      <GlobalStyles>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/details/:alpha3Code">
+              <Details countries={countries} />
+            </Route>
+            <Route exact path="/">
+              <div className="countries countries__app">
+                <SearchField
+                  searchFieldValue={searchFieldValue}
+                  setSearchFieldValue={setSearchFieldValue}
+                />
+                <Filter
+                  filterByRegionValues={filterByRegionValues}
+                  selectedRegion={selectedRegion}
+                  setSelectedRegion={setSelectedRegion}
+                />
+                <CountriesComponent
+                  countries={countries}
+                  searchFieldValue={searchFieldValue}
+                  selectedRegion={selectedRegion}
+                />
+              </div>
+            </Route>
+          </Switch>
+          <Countries
+            setFilterByRegionValues={setFilterByRegionValues}
+            setCountries={setCountries}
+          />
+        </Router>
+      </GlobalStyles>
     </ThemeContextProvider>
   );
 }
