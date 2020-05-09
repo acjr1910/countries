@@ -1,5 +1,6 @@
 /* eslint-disable eqeqeq */
 import React from 'react';
+import { Select } from './Filter.styles';
 
 type Props = {
   filterByRegionValues: string[];
@@ -18,16 +19,16 @@ function Filter({
   }
 
   return (
-    <select value={selectedRegion} onChange={handleChange}>
+    <Select className="filter" value={selectedRegion} onChange={handleChange}>
       {filterByRegionValues.map((value, index) => {
         const optionValue = index == 0 ? '' : value;
         return (
-          <option key={value} value={optionValue}>
+          <option className="filter__option" key={value} value={optionValue}>
             {value}
           </option>
         );
       })}
-    </select>
+    </Select>
   );
 }
 
