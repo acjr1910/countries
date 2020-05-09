@@ -20,13 +20,22 @@ export const screenWidths = {
 export const fontSizes = {
   homepage: '14px',
   detailPage: '16px',
+  searchInput: '12px',
 };
 
 export const shadows = {
   header: '0px 2px 4px -2px rgb(0,0,0,0.2)',
+  search: '0px 1px 8px -2px rgba(0, 0, 0, 0.1)',
 };
 
 export const paddings = {
   base: '0 1rem',
   header: '1.8rem 1rem',
+  search: '1.6rem 1rem 2.2rem',
+  input: '1.1rem 1.1rem 1.1rem 4.110rem',
+  content: '1.8rem 1rem',
+};
+
+export const margins = {
+  search: '1.6rem 1rem 2.2rem',
 };
