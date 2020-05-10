@@ -15,17 +15,15 @@ export const Select = styled.select`
   margin: ${margins.filter};
   padding: ${paddings.filter};
   box-shadow: ${shadows.filter};
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
   background: ${colors.white};
   cursor: pointer;
   font-size: ${fontSizes.filter};
   font-weight: 300;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   :focus {
-    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-    box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: red;
+    color: ${colors.black};
     outline: none;
   }
   ::-ms-expand {
