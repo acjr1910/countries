@@ -1,6 +1,9 @@
 /* eslint-disable eqeqeq */
 import React from 'react';
-import { Select } from './Filter.styles';
+import { Wrapper } from './Filter.styles';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown as angleDownIcon } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   filterByRegionValues: string[];
@@ -19,8 +22,13 @@ function Filter({
   }
 
   return (
-    <div>
-      <Select className="filter" value={selectedRegion} onChange={handleChange}>
+    <Wrapper className="filter">
+      <FontAwesomeIcon className="filter__icon" icon={angleDownIcon} />
+      <select
+        className="filter__select"
+        value={selectedRegion}
+        onChange={handleChange}
+      >
         {filterByRegionValues.map((value, index) => {
           const optionValue = index == 0 ? '' : value;
           return (
@@ -29,8 +37,8 @@ function Filter({
             </option>
           );
         })}
-      </Select>
-    </div>
+      </select>
+    </Wrapper>
   );
 }
 
