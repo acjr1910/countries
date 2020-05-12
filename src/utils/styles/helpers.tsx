@@ -33,6 +33,7 @@ export const shadows = {
   header: '0px 2px 4px -2px rgb(0,0,0,0.2)',
   search: '0px 1px 8px -2px rgba(0, 0, 0, 0.1)',
   filter: '0px 1px 8px -2px rgba(0, 0, 0, 0.1)',
+  backButton: '0px 1px 7px 0px rgba(0,0,0,0.3)',
 };
 
 export const paddings = {
@@ -45,11 +46,13 @@ export const paddings = {
   card: {
     textContainer: '1.2rem 1.6rem 2.8rem',
   },
+  backButton: '0.475rem 1.7rem',
 };
 
 export const margins = {
   search: '1.6rem 1rem 2.2rem',
   filter: '0 1rem 1rem 1rem',
+  backButton: '2rem 0 4rem',
 };
 
 export const letterSpacings = {
