@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ThemeContext, ThemeContextProvider } from '../../context/ThemeContext';
+import { ThemeContext } from '../../context/ThemeContext';
 import { ICountries } from '../Countries/intefaces';
 import Countries from '../Countries';
 import CountriesComponent from '../../components/Countries';
