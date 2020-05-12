@@ -11,7 +11,7 @@ import {
 export const DropdownMenu = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 52%;
+  max-width: 62%;
   position: relative;
   cursor: pointer;
 
