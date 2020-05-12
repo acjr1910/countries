@@ -53,7 +53,6 @@ function Countries({ countries, searchFieldValue, selectedRegion }: Props) {
 
   return (
     <div>
-      <div>CountriesComponent</div>
       <div>{cardToRender}</div>
     </div>
   );

@@ -29,7 +29,7 @@ function App() {
               <Details countries={countries} />
             </Route>
             <Route exact path="/">
-              <div className="countries countries__app">
+              <main className="countries countries__app">
                 <SearchField
                   searchFieldValue={searchFieldValue}
                   setSearchFieldValue={setSearchFieldValue}
@@ -44,7 +44,7 @@ function App() {
                   searchFieldValue={searchFieldValue}
                   selectedRegion={selectedRegion}
                 />
-              </div>
+              </main>
             </Route>
           </Switch>
           <Countries
