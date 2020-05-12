@@ -8,9 +8,13 @@ type Props = {
 };
 
 function BorderLinkButton({ label, linkTo }: Props) {
+  function handleClick() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   const { theme } = useContext(ThemeContext);
   return (
-    <StyledLink theme={theme} to={linkTo}>
+    <StyledLink theme={theme} to={linkTo} onClick={handleClick}>
       {label}
     </StyledLink>
   );

@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
 
-import { Styles } from './Card.styles';
+import { StyledLink } from './Card.styles';
 
 interface IProps {
   alpha3Code: string;
@@ -18,8 +17,8 @@ function Card({ alpha3Code, name, population, region, capital, flag }: IProps) {
   const intlPopulation = new Intl.NumberFormat('en').format(population);
 
   return (
-    <Link to={`details/${alpha3Code}`}>
-      <Styles theme={theme} className="card">
+    <StyledLink theme={theme} to={`details/${alpha3Code}`}>
+      <div className="card">
         <div className="card__flag-container">
           <img className="card__flag-image" alt={`${name} Flag`} src={flag} />
         </div>
@@ -36,8 +35,8 @@ function Card({ alpha3Code, name, population, region, capital, flag }: IProps) {
             <span className="card__info-title">Capital:</span> {capital}
           </p>
         </div>
-      </Styles>
-    </Link>
+      </div>
+    </StyledLink>
   );
 }
 

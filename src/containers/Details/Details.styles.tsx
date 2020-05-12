@@ -23,6 +23,9 @@ export const Styles = styled.div`
     &__flag-image {
       width: 100%;
       max-height: ${rem('240px')};
+      @media (min-width: 768px) {
+        max-height: initial;
+      }
     }
 
     &__name {

@@ -36,6 +36,7 @@ function Details({ countries }: Props): JSX.Element {
   } = country;
 
   const intlPopulation = new Intl.NumberFormat('en').format(population);
+  const hasBorders = borders.length > 0;
 
   function arrayToString(arr: Currency[]): string {
     let newString: string = '';
@@ -95,19 +96,21 @@ function Details({ countries }: Props): JSX.Element {
           {arrayToString(languages)}
         </p>
       </div>
-      <div className="detail-page__bottom-container">
-        <h4 className="detail-page__border-title">Border Countries:</h4>
-        {borders.map((border) => {
-          const countryBorderName = countries[border].name;
-          return (
-            <BorderLinkButton
-              key={border}
-              label={countryBorderName}
-              linkTo={border}
-            />
-          );
-        })}
-      </div>
+      {hasBorders && (
+        <div className="detail-page__bottom-container">
+          <h4 className="detail-page__border-title">Border Countries:</h4>
+          {borders.map((border) => {
+            const countryBorderName = countries[border].name;
+            return (
+              <BorderLinkButton
+                key={border}
+                label={countryBorderName}
+                linkTo={border}
+              />
+            );
+          })}
+        </div>
+      )}
     </Styles>
   );
 }

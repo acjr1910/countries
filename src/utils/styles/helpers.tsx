@@ -16,6 +16,7 @@ export const colors = {
 
 export const screenWidths = {
   mobile: '375',
+  tablet: '768',
   desktop: '1440',
 };
 

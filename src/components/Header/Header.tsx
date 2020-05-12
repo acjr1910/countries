@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon as moonIcon } from '@fortawesome/free-regular-svg-icons';
@@ -24,7 +25,9 @@ function Header() {
   return (
     <Styles theme={theme} className="header">
       <div className="header__flex">
-        <h1 className="header__logo">Where in the world?</h1>
+        <Link to="/">
+          <h1 className="header__logo">Where in the world?</h1>
+        </Link>
       </div>
       <div className="header__theme-switcher" onClick={toggleTheme}>
         <FontAwesomeIcon className="header__theme-icon" size="1x" icon={icon} />

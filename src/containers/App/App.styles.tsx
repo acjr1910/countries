@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-  height: 100%;
-  min-height: 100vh;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2rem 1rem;
+  }
 `;
