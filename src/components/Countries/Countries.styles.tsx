@@ -7,7 +7,7 @@ export const Styles = styled.div`
       display: flex;
       flex-wrap: wrap;
       @media (min-width: 768px) {
-        justify-content: space-between;
+        justify-content: flex-start;
       }
     }
   }
