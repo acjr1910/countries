@@ -21,15 +21,17 @@ function App() {
   const [selectedRegion, setSelectedRegion] = useState('');
   const { theme } = useContext(ThemeContext);
 
+  console.log(process.env.PUBLIC_URL);
+
   return (
     <GlobalStyles theme={theme}>
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/details/:alpha3Code">
+          <Route exact path={`${process.env.PUBLIC_URL}/details/:alpha3Code`}>
             <Details countries={countries} />
           </Route>
-          <Route exact path="/">
+          <Route exact path={`${process.env.PUBLIC_URL}/`}>
             <Main className="countries countries__main">
               <SearchField
                 searchFieldValue={searchFieldValue}
@@ -44,10 +46,6 @@ function App() {
                 countries={countries}
                 searchFieldValue={searchFieldValue}
                 selectedRegion={selectedRegion}
-              />
-              <Countries
-                setFilterByRegionValues={setFilterByRegionValues}
-                setCountries={setCountries}
               />
             </Main>
           </Route>

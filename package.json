@@ -2,7 +2,7 @@
   "name": "countries",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://ajnior.github.io/projects/countries/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
