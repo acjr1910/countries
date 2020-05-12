@@ -7,6 +7,7 @@ export const Styles = styled.div`
   height: 100%;
   max-width: 85%;
   margin: 0 auto;
+  padding-bottom: 3rem;
   color: ${(props) => (props.theme == 'light' ? colors.black : colors.white)};
   .detail-page {
     &__top-container,
@@ -17,7 +18,6 @@ export const Styles = styled.div`
     &__bottom-container {
       display: flex;
       flex-wrap: wrap;
-      padding-bottom: 3rem;
     }
 
     &__flag-image {

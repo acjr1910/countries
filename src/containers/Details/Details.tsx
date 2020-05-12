@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ICountries } from '../Countries/intefaces';
 import { useParams } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
@@ -18,6 +18,10 @@ function Details({ countries }: Props): JSX.Element {
   const { theme } = useContext(ThemeContext);
   let { alpha3Code } = useParams();
   const country = countries[alpha3Code];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   if (!country) return <></>;
 
