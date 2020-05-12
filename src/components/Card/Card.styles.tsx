@@ -10,22 +10,14 @@ import {
   fontSizes,
 } from '../../utils/styles/helpers';
 
-export const StyledLink = styled(Link)`
-  max-width: 75%;
-  margin: 2.4rem auto;
-  box-shadow: ${shadows.search};
+export const CardStyles = styled.div`
   background: ${(props) =>
     props.theme == 'light' ? colors.white : colors.darkMode.darkBlue};
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    flex-basis: 23%;
-    margin: 2.4rem 0.5rem;
-  }
   .card {
     &__flag-container {
       display: flex;
     }
+
     &__flag-image {
       border-radius: ${rem('5px')} ${rem('5px')} 0 0;
     }
@@ -38,6 +30,7 @@ export const StyledLink = styled(Link)`
       border-radius: 0 0 ${rem('5px')} ${rem('5px')};
       padding: ${paddings.card.textContainer};
     }
+
     &__name {
       font-size: ${fontSizes.card.infoTitle};
       letter-spacing: ${letterSpacings.extraSmall};
@@ -47,13 +40,27 @@ export const StyledLink = styled(Link)`
         min-height: 50px;
       }
     }
+
     &__info {
       margin: 0.4rem 0;
       letter-spacing: ${letterSpacings.extraSmall};
     }
+
     &__info-title {
       font-weight: 600;
       letter-spacing: ${letterSpacings.extraSmall};
     }
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  max-width: 75%;
+  margin: 2.4rem auto;
+  box-shadow: ${shadows.search};
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 23%;
+    margin: 2.4rem 0.5rem;
   }
 `;

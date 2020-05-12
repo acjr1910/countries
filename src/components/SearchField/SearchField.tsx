@@ -27,6 +27,8 @@ function Search({ searchFieldValue, setSearchFieldValue }: Props) {
         placeholder="Search for a country..."
         onChange={handleChange}
         className="search__input"
+        name="search"
+        aria-label="search"
       />
     </Container>
   );
