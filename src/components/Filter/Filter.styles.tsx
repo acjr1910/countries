@@ -15,6 +15,11 @@ export const DropdownMenu = styled.div`
   position: relative;
   cursor: pointer;
 
+  @media (min-width: 768px) {
+    width: 24%;
+    max-height: 52px;
+  }
+
   .dropdown-menu {
     &__active-item {
       display: flex;
@@ -30,6 +35,9 @@ export const DropdownMenu = styled.div`
         props.theme == 'light' ? colors.white : colors.darkMode.darkBlue};
       color: ${(props) =>
         props.theme == 'light' ? colors.black : colors.white};
+      @media (min-width: 768px) {
+        max-height: 52px;
+      }
     }
 
     &__active-text {

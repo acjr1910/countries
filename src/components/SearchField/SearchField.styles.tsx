@@ -9,9 +9,14 @@ import {
 } from '../../utils/styles/helpers';
 
 export const Container = styled.div`
-  padding: ${margins.search};
+  margin: ${margins.search};
   display: flex;
   position: relative;
+  @media (min-width: 768px) {
+    margin: 0;
+    max-height: 52px;
+    width: 40%;
+  }
   .search {
     &__input {
       width: 100%;
@@ -42,8 +47,8 @@ export const Container = styled.div`
     &__icon {
       position: absolute;
       top: 50%;
-      left: 44px;
-      transform: translateY(-80%);
+      left: 28px;
+      transform: translateY(-50%);
       color: ${(props) =>
         props.theme == 'light' ? colors.lightMode.darkGray : colors.white};
     }
