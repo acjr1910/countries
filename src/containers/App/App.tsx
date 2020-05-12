@@ -9,7 +9,6 @@ import Filter from '../../components/Filter';
 import Details from '../Details';
 import Header from '../../components/Header';
 
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { GlobalStyles } from '../../utils/styles/global';
 import { Main } from './App.styles';
 
