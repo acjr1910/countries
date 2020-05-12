@@ -28,10 +28,6 @@ function App() {
         <Switch>
           <Route exact path="/details/:alpha3Code">
             <Details countries={countries} />
-            <Countries
-              setFilterByRegionValues={setFilterByRegionValues}
-              setCountries={setCountries}
-            />
           </Route>
           <Route exact path="/">
             <Main className="countries countries__main">
@@ -57,6 +53,10 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <Countries
+        setFilterByRegionValues={setFilterByRegionValues}
+        setCountries={setCountries}
+      />
     </GlobalStyles>
   );
 }
