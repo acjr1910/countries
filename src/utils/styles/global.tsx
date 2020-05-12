@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import styled from 'styled-components';
 import { colors, fontSizes } from './helpers';
 

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
+import { StyledLink } from './BorderLinkButton.styles';
 
 type Props = {
   label: string;
@@ -7,7 +8,12 @@ type Props = {
 };
 
 function BorderLinkButton({ label, linkTo }: Props) {
-  return <Link to={linkTo}>{label}</Link>;
+  const { theme } = useContext(ThemeContext);
+  return (
+    <StyledLink theme={theme} to={linkTo}>
+      {label}
+    </StyledLink>
+  );
 }
 
 export default BorderLinkButton;
