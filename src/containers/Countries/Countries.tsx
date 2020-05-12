@@ -4,7 +4,6 @@ import { endpoint } from './endpoint';
 import { Country } from './types';
 import { ICountries } from './intefaces';
 
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 
 type Props = {
