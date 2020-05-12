@@ -52,7 +52,7 @@ function Filter({
       onClick={handleDropdownMenu}
     >
       <div className="dropdown-menu__active-item">
-        {activeItemTextContent}
+        <h3 className="dropdown-menu__active-text">{activeItemTextContent}</h3>
         <FontAwesomeIcon className="dropdown-menu__icon" icon={angleDownIcon} />
       </div>
       {showDropdown && (
