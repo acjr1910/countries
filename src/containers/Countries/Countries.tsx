@@ -4,6 +4,9 @@ import { endpoint } from './endpoint';
 import { Country } from './types';
 import { ICountries } from './intefaces';
 
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
+
 type Props = {
   setCountries: React.Dispatch<React.SetStateAction<ICountries>>;
   setFilterByRegionValues: React.Dispatch<React.SetStateAction<string[]>>;
@@ -84,7 +87,18 @@ function Countries({ setCountries, setFilterByRegionValues }: Props) {
     return obj;
   }
 
-  if (isLoading) return <div>Loading</div>; // add spinner here
+  if (isLoading)
+    return (
+      <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+        <Loader
+          type="RevolvingDot"
+          color="#888"
+          height={100}
+          width={100}
+          timeout={3000}
+        />
+      </div>
+    );
 
   if (fetchHasFailed)
     return (
