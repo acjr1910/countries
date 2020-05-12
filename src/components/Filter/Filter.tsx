@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
-import React from 'react';
-import { Wrapper } from './Filter.styles';
+import React, { useState, useContext } from 'react';
+import { DropdownMenu } from './Filter.styles';
+import { ThemeContext } from '../../context/ThemeContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown as angleDownIcon } from '@fortawesome/free-solid-svg-icons';
@@ -16,29 +17,48 @@ function Filter({
   selectedRegion,
   setSelectedRegion,
 }: Props) {
-  function handleChange(event: React.FormEvent<HTMLSelectElement>) {
-    const value = event.currentTarget.value;
+  const { theme } = useContext(ThemeContext);
+  const [showDropdown, toggleShowDropdown] = useState<boolean>(false);
+
+  function handleDropdownMenu() {
+    toggleShowDropdown((prevState) => !prevState);
+  }
+
+  function handleDropdownMenuItem(event: React.MouseEvent) {
+    let value: string = event.currentTarget.innerHTML;
+    if (value == filterByRegionValues[0]) value = '';
     setSelectedRegion(value);
   }
 
-  return (
-    <Wrapper className="filter">
-      <FontAwesomeIcon className="filter__icon" icon={angleDownIcon} />
-      <select
-        className="filter__select"
-        value={selectedRegion}
-        onChange={handleChange}
+  const dropdownItems: React.ReactNode[] = filterByRegionValues.map((value) => {
+    return (
+      <button
+        key={value}
+        className="dropdown-menu__item"
+        type="button"
+        onClick={handleDropdownMenuItem}
       >
-        {filterByRegionValues.map((value, index) => {
-          const optionValue = index == 0 ? '' : value;
-          return (
-            <option className="filter__option" key={value} value={optionValue}>
-              {value}
-            </option>
-          );
-        })}
-      </select>
-    </Wrapper>
+        {value}
+      </button>
+    );
+  });
+
+  const activeItemTextContent: string = selectedRegion || 'Filter By Region';
+
+  return (
+    <DropdownMenu
+      theme={theme}
+      className="dropdown-menu"
+      onClick={handleDropdownMenu}
+    >
+      <div className="dropdown-menu__active-item">
+        {activeItemTextContent}
+        <FontAwesomeIcon className="dropdown-menu__icon" icon={angleDownIcon} />
+      </div>
+      {showDropdown && (
+        <div className="dropdown-menu__items-container">{dropdownItems}</div>
+      )}
+    </DropdownMenu>
   );
 }
 
