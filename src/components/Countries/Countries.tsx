@@ -4,6 +4,8 @@ import { Country } from '../../containers/Countries/types';
 
 import Card from '../Card';
 
+import { Styles } from './Countries.styles';
+
 type Props = {
   searchFieldValue: string;
   selectedRegion: string;
@@ -52,9 +54,9 @@ function Countries({ countries, searchFieldValue, selectedRegion }: Props) {
   const cardToRender = makeCountriesToBeRendered();
 
   return (
-    <div>
-      <div>{cardToRender}</div>
-    </div>
+    <Styles className="countries">
+      <div className="countries__cards-container">{cardToRender}</div>
+    </Styles>
   );
 }
 
