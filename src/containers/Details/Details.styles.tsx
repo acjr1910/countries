@@ -9,7 +9,17 @@ export const Styles = styled.div`
   margin: 0 auto;
   padding-bottom: 3rem;
   color: ${(props) => (props.theme == 'light' ? colors.black : colors.white)};
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .detail-page {
+    &__back-button-container {
+      @media (min-width: 768px) {
+        flex-basis: 100%;
+      }
+    }
     &__top-container,
     &__mid-container {
       margin-bottom: 3rem;
@@ -20,6 +30,11 @@ export const Styles = styled.div`
       flex-wrap: wrap;
     }
 
+    &__flag-container {
+      @media (min-width: 768px) {
+        flex-basis: 45%;
+      }
+    }
     &__flag-image {
       width: 100%;
       max-height: ${rem('240px')};
@@ -28,9 +43,19 @@ export const Styles = styled.div`
       }
     }
 
+    &__info-container {
+      @media (min-width: 768px) {
+        flex-basis: 55%;
+        padding: 0 0 0 8%;
+      }
+    }
+
     &__name {
       font-weight: 800;
       margin: 2rem 0 1.475rem;
+      @media (min-width: 768px) {
+        margin: 0 0 1.475rem;
+      }
     }
 
     &__info {
