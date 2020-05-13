@@ -23,11 +23,18 @@ export const Styles = styled.div`
     &__top-container,
     &__mid-container {
       margin-bottom: 3rem;
+      @media (min-width: 768px) {
+        flex-basis: 50%;
+        margin-bottom: 1rem;
+      }
     }
 
     &__bottom-container {
       display: flex;
       flex-wrap: wrap;
+      @media (min-width: 768px) {
+        flex-basis: 100%;
+      }
     }
 
     &__flag-container {
@@ -47,6 +54,14 @@ export const Styles = styled.div`
       @media (min-width: 768px) {
         flex-basis: 55%;
         padding: 0 0 0 8%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+    &__name-container {
+      @media (min-width: 768px) {
+        flex-basis: 100%;
       }
     }
 
@@ -54,7 +69,7 @@ export const Styles = styled.div`
       font-weight: 800;
       margin: 2rem 0 1.475rem;
       @media (min-width: 768px) {
-        margin: 0 0 1.475rem;
+        margin: 0 0 1rem;
       }
     }
 
