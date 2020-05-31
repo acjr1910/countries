@@ -8,6 +8,7 @@ import {
   paddings,
   letterSpacings,
   fontSizes,
+  transition,
 } from '../../utils/styles/helpers';
 
 export const CardStyles = styled.div`
@@ -29,6 +30,7 @@ export const CardStyles = styled.div`
         props.theme == 'light' ? colors.black : colors.white};
       border-radius: 0 0 ${rem('5px')} ${rem('5px')};
       padding: ${paddings.card.textContainer};
+      transition: ${transition.theme};
     }
 
     &__name {

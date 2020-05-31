@@ -6,6 +6,7 @@ import {
   margins,
   shadows,
   fontSizes,
+  transition,
 } from '../../utils/styles/helpers';
 
 export const Container = styled.div`
@@ -43,6 +44,7 @@ export const Container = styled.div`
         color: ${(props) =>
           props.theme == 'light' ? colors.lightMode.darkGray : colors.white};
       }
+      transition: ${transition.theme};
     }
     &__icon {
       position: absolute;

@@ -91,7 +91,7 @@ function Countries({ setCountries, setFilterByRegionValues }: Props) {
     return (
       <div style={{ textAlign: 'center', marginTop: '4rem' }}>
         <Loader
-          type="RevolvingDot"
+          type="Oval"
           color="#888"
           height={100}
           width={100}

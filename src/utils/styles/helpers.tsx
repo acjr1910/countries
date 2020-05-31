@@ -59,3 +59,7 @@ export const margins = {
 export const letterSpacings = {
   extraSmall: '0.02rem',
 };
+
+export const transition = {
+  theme: 'all 0.2s linear',
+};

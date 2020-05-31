@@ -6,6 +6,7 @@ import {
   paddings,
   shadows,
   fontSizes,
+  transition,
 } from '../../utils/styles/helpers';
 
 export const DropdownMenu = styled.div`
@@ -14,7 +15,6 @@ export const DropdownMenu = styled.div`
   max-width: 62%;
   position: relative;
   cursor: pointer;
-
   @media (min-width: 768px) {
     width: 24%;
     max-height: 52px;
@@ -38,6 +38,7 @@ export const DropdownMenu = styled.div`
       @media (min-width: 768px) {
         max-height: 52px;
       }
+      transition: ${transition.theme};
     }
 
     &__active-text {

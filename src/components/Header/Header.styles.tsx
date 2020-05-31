@@ -1,6 +1,11 @@
 /* eslint-disable eqeqeq */
 import styled from 'styled-components';
-import { colors, shadows, paddings } from '../../utils/styles/helpers';
+import {
+  colors,
+  shadows,
+  paddings,
+  transition,
+} from '../../utils/styles/helpers';
 
 export const Styles = styled.div`
   display: flex;
@@ -10,6 +15,7 @@ export const Styles = styled.div`
     props.theme == 'light' ? colors.white : colors.darkMode.darkBlue};
   box-shadow: ${shadows.header};
   padding: ${paddings.header};
+  transition: ${transition.theme};
 
   .header {
     &__logo {

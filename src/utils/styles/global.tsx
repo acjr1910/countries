@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 import styled from 'styled-components';
-import { colors, fontSizes } from './helpers';
+import { colors, fontSizes, transition } from './helpers';
 
 export const GlobalStyles = styled.div`
   min-height: 100vh;
@@ -12,4 +12,5 @@ export const GlobalStyles = styled.div`
     props.theme == 'light'
       ? colors.lightMode.veryLightGray
       : colors.darkMode.veryDarkBlue};
+  transition: ${transition.theme};
 `;
