@@ -61,5 +61,5 @@ export const letterSpacings = {
 };
 
 export const transition = {
-  theme: 'all 0.2s linear',
+  theme: 'background 0.15s linear',
 };
