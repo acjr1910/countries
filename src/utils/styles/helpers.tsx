@@ -58,6 +58,7 @@ export const margins = {
 
 export const letterSpacings = {
   extraSmall: '0.02rem',
+  normal: '0',
 };
 
 export const transition = {
