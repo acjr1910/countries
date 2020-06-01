@@ -18,9 +18,9 @@ function Card({ alpha3Code, name, population, region, capital, flag }: IProps) {
 
   return (
     <StyledLink to={`details/${alpha3Code}`}>
-      <CardStyles theme={theme} className="card">
+      <CardStyles theme={theme} flag={flag} className="card">
         <div className="card__flag-container">
-          <img className="card__flag-image" alt={`${name} Flag`} src={flag} />
+          {/* <img className="card__flag-image" alt={`${name} Flag`} src={flag} /> */}
         </div>
         <div className="card__text-container">
           <h4 className="card__name">{name}</h4>

@@ -11,16 +11,31 @@ import {
   transition,
 } from '../../utils/styles/helpers';
 
-export const CardStyles = styled.div`
+interface CardProps {
+  readonly theme: string;
+  readonly flag: string;
+}
+
+export const CardStyles = styled.div<CardProps>`
   background: ${(props) =>
     props.theme == 'light' ? colors.white : colors.darkMode.darkBlue};
+
   .card {
     &__flag-container {
-      display: flex;
+      width: 280px;
+      height: 186px;
+      border-radius: ${rem('5px')} ${rem('5px')} 0 0;
+      background-image: url(${(props) => props.flag});
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: cover;
     }
 
     &__flag-image {
+      display: none;
       border-radius: ${rem('5px')} ${rem('5px')} 0 0;
+      background: ${(props) =>
+        props.theme == 'light' ? colors.white : colors.darkMode.darkBlue};
     }
 
     &__text-container {
@@ -52,6 +67,8 @@ export const CardStyles = styled.div`
       font-weight: 600;
       letter-spacing: ${letterSpacings.extraSmall};
     }
+    @media (min-width: 768px) {
+    }
   }
 `;
 
@@ -59,10 +76,12 @@ export const StyledLink = styled(Link)`
   max-width: 75%;
   margin: 2.4rem auto;
   box-shadow: ${shadows.search};
+  transition: transform 0.2s linear;
+
   @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    flex-basis: 23%;
-    margin: 2.4rem 0.5rem;
+    max-width: 100%;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;

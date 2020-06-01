@@ -37,6 +37,7 @@ export const DropdownMenu = styled.div`
         props.theme == 'light' ? colors.black : colors.white};
       @media (min-width: 768px) {
         max-height: 52px;
+        margin: 0;
       }
       transition: ${transition.theme};
     }
