@@ -39,6 +39,7 @@ export const CardStyles = styled.div<CardProps>`
     }
 
     &__text-container {
+      min-width: 280px;
       background: ${(props) =>
         props.theme == 'light' ? colors.white : colors.darkMode.darkBlue};
       color: ${(props) =>
@@ -74,6 +75,7 @@ export const CardStyles = styled.div<CardProps>`
 
 export const StyledLink = styled(Link)`
   max-width: 75%;
+  min-width: 280px;
   margin: 2.4rem auto;
   box-shadow: ${shadows.search};
   transition: transform 0.2s linear;
